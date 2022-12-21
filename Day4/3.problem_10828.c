@@ -3,14 +3,12 @@
 typedef int elem;
 
 int stack_top = -1;
-int stack_size = 0;
+int stack_size = 100;
 elem *stack;
 int i = 0;
 
 int size()
-{
-    return stack_top+1;
-}
+{    return stack_top+1;}
 
 int empty()
 {
@@ -34,8 +32,6 @@ void push(elem item)
         printf("Stack is full!\n");
     }
     else{
-    //stack_top ++;
-    //*(stack+stack_top)=item;
     stack[++stack_top] =item;
     }
 }
@@ -46,9 +42,8 @@ elem pop()
         printf("Stack is empty!\n");
         return -1;
     }
-    else{
+    else
         return stack[stack_top--];
-    }
 }
 
 elem top()
@@ -76,52 +71,42 @@ void print()
 
 int main(void)
 {
-	int action = 0;
+	char action[100];
 	elem newElem = 0;
-	printf("Size of stack: ");
-	scanf("%d", &stack_size);
-	// dynamic allocation
+    int command =0 ;
+	scanf("%d", &command);
 
-    int i ;
     calloc(stack_size,sizeof(int));
     stack = (int*)calloc(stack_size,sizeof(int));
 
-	while(1)
-	{
-		printf("\nChoose action: \n");
-		printf("1: push(), 2: pop(), 3: top(), 4: size(), 5: empty(), 6: end\n>>> ");
-		scanf("%d", &action);
-
-		switch(action)
-		{
-		case 1:
-			printf("Element to push: ");
+    for (int i=0;i<command;i++){
+        scanf("%s", &action);
+        printf("%s\n",action);
+        if(action == "push"){
+            printf("Element to push: ");
 			scanf("%d", &newElem);
 			push(newElem);
             printf("저장된 스택: ");
 			print();
 			printf("\n");
             break;
-		case 2:
-			printf("pop(): %d\n", pop());
+        }
+        else if(action=="pop"){
+            printf("pop(): %d\n", pop());
             printf("저장된 스택: ");
 			print();
 			printf("\n");
 			break;
-		case 3:
-			printf("top(): %d\n", top());
+        }
+        else if(action=="size"){
+            printf("size(): %d\n", size());
             printf("저장된 스택: ");
 			print();
 			printf("\n");
 			break;
-		case 4:
-			printf("size(): %d\n", size());
-            printf("저장된 스택: ");
-			print();
-			printf("\n");
-			break;
-		case 5:
-            if(empty()==0)
+        }
+        else if(action=="empty"){
+             if(empty()==0)
                 printf("empty(): Not empty\n");
             else   
                 printf("empty(): Empty\n");
@@ -129,6 +114,13 @@ int main(void)
 			print();
 			printf("\n");
 			break;
-		}
-	}
+        }
+        else if(action=="top"){
+            printf("top(): %d\n", top());
+            printf("저장된 스택: ");
+			print();
+			printf("\n");
+			break;
+        }
+    }
 }
