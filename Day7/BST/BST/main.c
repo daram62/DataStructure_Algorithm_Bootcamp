@@ -21,7 +21,7 @@ int main(void) {
 
   while (1) {
     printf("Choose action: \n");
-    printf("1: insert, 2: erase, 3: find, 4: print, 5: exit\n");
+    printf("1: insert, 2: erase, 3: find, 4: print, 5: exit\n>>> ");
     scanf("%d", &action);
     rewind(stdin);
 
@@ -36,9 +36,9 @@ int main(void) {
         break;
       case 2:
         printf("Value to erase : ");
-        scanf("%d", &key);
+        scanf("%d",&key);
         rewind(stdin);
-        Erase(root, key);
+        Erase(root,key);
         inorder(root);
         printf("\n");
         break;
