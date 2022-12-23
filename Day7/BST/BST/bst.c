@@ -128,8 +128,6 @@ void Erase(treeNode* root, element key) {
             Erase(qparent,q->key);
         }
         else Erase(p->left,q->key);
-        
         p->key = q->key;
-        
     }
 }
